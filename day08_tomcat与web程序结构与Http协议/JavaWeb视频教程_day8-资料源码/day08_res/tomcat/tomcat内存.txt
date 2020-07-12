@@ -1,0 +1,10 @@
+如果你的项目中使用了过多的jar包，可能会导致Java方法区内存溢出。
+
+在%CATALINA_HOME%\bin\catalina.bat文件中添加如下内容：set JAVA_OPTS=-Xms128m -Xmx256m
+
+rem ----- Execute The Requested Command ---------------------------------------
+set JAVA_OPTS=-Xms128m -Xmx256m
+
+echo Using CATALINA_BASE:   "%CATALINA_BASE%"
+echo Using CATALINA_HOME:   "%CATALINA_HOME%"
+echo Using CATALINA_TMPDIR: "%CATALINA_TMPDIR%"
