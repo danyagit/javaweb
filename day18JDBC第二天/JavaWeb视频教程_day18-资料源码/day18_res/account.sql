@@ -1,0 +1,11 @@
+CREATE TABLE account(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(30),
+	balance NUMERIC(10.2)
+);
+
+INSERT INTO account(NAME,balance) VALUES('zs', 100000);
+INSERT INTO account(NAME,balance) VALUES('ls', 100000);
+INSERT INTO account(NAME,balance) VALUES('ww', 100000);
+
+SELECT * FROM account;

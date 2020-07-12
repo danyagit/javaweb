@@ -1,0 +1,19 @@
+#mssql
+driverClassName=com.microsoft.jdbc.sqlserver.SQLServerDriver
+url=jdbc:sqlserver://127.0.0.1:1433;DatabaseName=students
+
+#mssql jtds
+driverClassName=net.sourceforge.jtds.jdbc.Driver
+url=jdbc:jtds:sqlserver://127.0.0.1:1433;DatabaseName=test
+
+#mysql
+driverClassName=com.mysql.jdbc.Driver
+url=jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=GBK
+
+#orcale
+driverClassName=oracle.jdbc.driver.OracleDriver
+url=jdbc:oracle:thin:@localhost:1521:test
+
+#access
+driverClassName=sun.jdbc.odbc.JdbcOdbcDriver
+url=jdbc:odbc:driver={Microsoft Access Driver (*.mdb)};DBQ=mdb\\students.mdb

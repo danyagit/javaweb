@@ -1,0 +1,111 @@
+功能分析：
+1. 上传
+2. 显示文件列表
+3. 下载
+
+页面：
+1. 上传页面：upload.jsp
+2. 文件列表：list.jsp
+  * 文件名称、上传时间、下载次数、（下载链接）
+3. msg.jsp
+  * 用来显示成功信息！
+  * 链接：
+    > 上传页面
+    > 文件列表
+4. 主页：index.jsp
+  * 两链接
+    > 上传页面
+    > 文件列表
+  * 标题：ITCAST网络硬盘！
+
+-------------------
+
+表：
+
+1. tb_files
+  * fid
+  * filepath：/files/a/b/23432432_白冰.jpg
+  * framename：白冰.jpg
+  * uploadtime：上传时间
+  * cnt：下载次数
+  * filesize：文件大小
+
+-------------------
+
+相关类
+domain：
+  * MyFile
+    > String fid
+    > String filepath
+    > String framename
+    > String uploadtime
+    > Integer cnt;
+    > long filesize
+
+  * MyFileDao
+    > void add(MyFile)：你在上传时，需要把表单数据封装到MyFile对象，然后调用dao的add()方法完成把MyFile插入数据库中。
+    > List<MyFile> findAll()：查询所有的上传的文件！
+    > void edit(String fid, Integer cnt)：下载，通过fid查询对应的MyFile，修改其下次次数，再update一下！
+    > MyFile load(String fid)：通过fid加载MyFile对象
+  
+  * MyFileService
+    > void add(MyFile)；调用dao完成添加
+    > List<MyFile> findAll()：调用dao完成查询所有
+    > MyFile download(String fid)：调用dao的load()方法得到MyFile，修改MyFile对象的下载次数，最后调用dao的edit()方法完成修改下载次数。　
+
+  * MyFileServlet extends BaseServlet
+    > findAll()
+      * 调用service方法得到所有的文件，即得到List<MyFile>
+      * 保存到request中
+      * 转发到list.jsp
+    > download()
+      * 获取参数：fid
+      * 调用service的download，传递fid。最终得到MyFile
+      * 通过MyFile的filepath找到文件，设置两个头一个流！
+      * 设置下棋框中的文件名称！
+      * 把文件内容写入到response的OutputStream中！
+  * MyFileUploadServlet extends HttpServlet
+    > doPost()
+      * 上传三步：得到FileItem
+      * 我们需要通过FileItem给我们的MyFile进行赋值！
+      * MyFile
+        > fid：通过uuid()得到
+	> filepath：目录打散，得到文件的保存路径！
+	> framename：上传文件的名称！通过FileItem.getName()得到！
+	> 通过FileItem得到filename
+	> uploadtime：获取当前时转换成字符串
+	> cnt：设置为0
+	> filesize：FileItem获取。
+      * 把MyFile通过service保存到数据库中
+      * 把FileItem对应的文件保存到硬盘！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

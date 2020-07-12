@@ -1,0 +1,3 @@
+1. 把图片当成邮件的附件上传！
+2. 在html中使用图片的位置：<img src='cid:xxx'/>
+3. 在附件的BodyPart上调用setHeader("Content-id", "xxx");其中xxx与第2步中的<img src="cid:xxx"/>对应
